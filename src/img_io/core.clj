@@ -1,4 +1,5 @@
 (ns img_io.core
+  (:gen-class)
   (:require [ring.util.response :as resp]
             [img_io.db :as db]
             [clojure.java.io :as io]
@@ -44,7 +45,7 @@
   (-> (handler/site public-routes)
       ))
     
-(defn -main []
+(defn -main [& args]
   (run-jetty #'app {:port 8080}))
 
 
