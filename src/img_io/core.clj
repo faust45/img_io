@@ -42,9 +42,9 @@
 
 (def app
   (-> (handler/site public-routes)
-      (wrap-reload 'img_io.core)))
+      ))
     
-(defn boot []
+(defn -main []
   (run-jetty #'app {:port 8080}))
 
 
