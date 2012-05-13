@@ -23,7 +23,7 @@
 (defn save
   [file]
   (let [id (str (UUID/randomUUID))]
-    (io/copy (file :tempfile) (io/file (str "uploads/" id)))
+    (io/copy file (io/file (str "uploads/" id)))
     id))
 
 (defn cached-file
@@ -36,6 +36,13 @@
     (if (.exists file)
       file
       (println "Cache fail"))))
+
+(defn get-original
+  [id]
+  (let [file (io/file (str "uploads/" id))]
+    (if (.exists file)
+      file
+      nil)))
 
 (defn process
   [& params]
