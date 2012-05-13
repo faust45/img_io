@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
+        <script src="/public/js/app.js"> </script>
+    </head>
+
+    <body>
+        <h1>Play Crazy CHESS with me!</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="text" name="key" />
+            <input type="text" name="data" />
+            <br />
+            <input type="file" name="file" value="upload" />
+            <br />
+            <input type="submit" value="send" />
+        </form>
+    </body>
+</html>

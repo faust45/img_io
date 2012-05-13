@@ -1,0 +1,16 @@
+/pom.xml
+*jar
+/lib
+/classes
+/native
+/.lein-failures
+/checkouts
+/.lein-deps-sum
+
+*.swp
+*.crc
+.DS_Store
+uploads/*
+cache/*
+lib/
+classes/
