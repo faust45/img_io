@@ -1,15 +1,24 @@
 (ns img_io.db
   (:require [clojure.java.io :as io] [clojure.string :as s])
-  (:import java.util.UUID javax.imageio.ImageIO java.awt.Image))
+  (:import java.util.UUID javax.imageio.ImageIO java.awt.Image java.awt.image.BufferedImage))
 
+(defn get-buff-img
+  [img]
+  (let [w  (.getWidth img) h (.getWidth img)
+        bi (BufferedImage. w h BufferedImage/TYPE_INT_RGB)
+        graphics (.getGraphics bi)]
+    (.drawImage graphics img 0 0 nil)
+    (.dispose graphics)
+    (println "in get buf")
+    (println w h)
+    bi))
 
 (defn resize
   [file new-file height width]
   (let [img (ImageIO/read file)
-        new-img (.getScaledInstance img 300 255 Image/SCALE_DEFAULT)]
-    (println (class new-file))
-    ;(ImageIO/write new-img "png" new-file)
-    (println "in resize")))
+        new-img (.getScaledInstance img height width Image/SCALE_DEFAULT)]
+    (ImageIO/write (get-buff-img new-img) "png" new-file))
+  new-file)
 
 (defn save
   [file]
@@ -31,8 +40,10 @@
 (defn process
   [& params]
   (let [[id height width] params
+        h (read-string (or height "200"))
+        w (read-string (or width "200"))
         file (io/file (str "uploads/" id))]
     (if (.exists file)
-      (resize file (cached-file params) height width)
+      (resize file (cached-file params) h w)
       nil)))
 

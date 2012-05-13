@@ -26,8 +26,8 @@
 
 (defn serv-img
   [& args]
-  (if-let [file (get-img args)]
-    (resp/file-response file)
+  (if-let [file (get-img (remove nil? args))]
+    (resp/response file)
     (resp/not-found "Sorry")))
 
 (defn upload-file
