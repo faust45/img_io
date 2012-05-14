@@ -52,6 +52,7 @@
 
 (defroutes public-routes
    (GET "/" [] (board))
+   (GET "/public/:path" [path] (resp/file-response path {:root "public/"}))
    (GET "/all" [] (list-imgs))
    (GET "/img/:id" [id height width is-rounded] (serv-img id height width is-rounded))
    (POST "/upload" [file] (upload-file file)))
