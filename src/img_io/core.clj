@@ -42,7 +42,7 @@
   [{:keys [tempfile size]}]
   (if (and (< size limit-size) (img-content? tempfile))
     (let [id (db/save tempfile)] 
-      (board))
+      (resp/redirect "/"))
     (board)))
 
 (defn list-imgs
