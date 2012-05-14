@@ -12,7 +12,7 @@ function renderImages(data, statusText) {
 
     for(var i in data) {
         var id = data[i];
-        $("#images").append("<img src='/img/"+id+"?height="+height+"&width="+width+"' />");
+        $("#images").append("<img class='thumb' src='/img/"+id+"?height="+height+"&width="+width+"' />");
     }
 }
 
