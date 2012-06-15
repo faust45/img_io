@@ -49,7 +49,7 @@
   []
   (let [names (map #(.getName %) (.listFiles (io/file "uploads/")))]
   {:status  200
-   :headers {}
+   :headers {"Access-Control-Allow-Origin"  "*"}
    :body    (generate-string names)}))
 
 (defroutes public-routes
