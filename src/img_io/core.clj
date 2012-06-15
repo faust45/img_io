@@ -48,7 +48,9 @@
 (defn list-imgs
   []
   (let [names (map #(.getName %) (.listFiles (io/file "uploads/")))]
-    (resp/response (generate-string names))))
+  {:status  200
+   :headers {}
+   :body    (generate-string names)}))
 
 (defroutes public-routes
    (GET "/" [] (board))
